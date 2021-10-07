@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Cool Veggies</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+
+    /* Remove the jumbotron's default bottom margin */
+    .jumbotron {
+      margin-bottom: 0;
+    }
+
+    .error {
+    	border: 2px solid red;
+    }
+    #myInput {
+	  background-image: url('/css/searchicon.png');
+	  background-position: 10px 10px;
+	  background-repeat: no-repeat;
+	  width: 100%;
+	  font-size: 16px;
+	  padding: 12px 20px 12px 40px;
+	  border: 1px solid #ddd;
+	  margin-bottom: 12px;
+}
+	.dropbtn {
+      background-color: green;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: green;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      
+    }
+    .veggies:hover {
+    	background: lightblue;
+    }
+
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color:  green;
+      min-width: 160px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown a:hover {background-color: #ddd;}
+
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#"> <strong> Best Veggies </strong> </a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Deals</a></li>
+          <li><a href="#">Stores</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+        	<li><input type="search" id="search" class="form-control rounded"  size="30" placeholder="Search"></li>
+        	<li>
+            <button type="search" onclick="searchfun()">
+              Search
+            </button>
+          </li>  
+        	<li>
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">Fruits/Veggies</button>
+                <div id="myDropdown" class="dropdown-content">
+                  <button class="dropbtn" onclick="fruitfun()">Fruits</button>
+                  <button class="dropbtn" onclick="vegiesfun()">veggies</button>
+                </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+          <li><a href="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+  	<h3>Mouse Time: </h3> <p id="mouse"></p>
+    <div class="row">
+      <div id="tomatoDiv" class="col-sm-4 veggies">
+        <div class="panel panel-primary " id="veggies" >
+          <div class="panel-heading">Tomatoes </div>
+          <div class="panel-body" onmouseover="change()"><img src="cart Images/tomato.jpg" class="img-responsive"
+              style="width:100%; height: 250px;" alt="Image"></div>
+          <div class="panel-footer">
+            <button id="tomatoButton" type="button"  onclick="goToCart()" class="btn btn-primary">Add Items to Cart
+              </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 veggies" >
+        <div class="panel panel-primary" id="veggies" >
+          <div class="panel-heading">Cucumber</div>
+          <div class="panel-body" onmouseover="change()"><img src="cart Images/cucumber.jpg" class="img-responsive"
+              style="width:100%;  height: 250px;" alt="Image"></div>
+          <div class="panel-footer"><button id="tomatoButton" type="button" onclick="goToCart()" class="btn btn-primary">Add Items to Cart
+              </button></div>
+        </div>
+      </div>
+      <div class="col-sm-4  veggies">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Chilli's</div>
+          <div class="panel-body" onmouseover="change()"><img src="cart Images/chilli.jpg" class="img-responsive"
+              style="width:100%; height: 250px" alt="Image"></div>
+          <div class="panel-footer"><button id="tomatoButton" type="button" onclick="goToCart()" class="btn btn-primary">Add Items to Cart
+              </button></div>
+        </div>
+      </div>
+    </div>
+  </div><br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 veggies">
+        <div class="panel panel-primary " id="fruits">
+          <div class="panel-heading">Strawberry's </div>
+          <div class="panel-body" onmouseover="change()"><img id="strawberyImg" src="cart Images/strawbery.jpg" class="img-responsive"
+              style="width:100%; height: 250px;" alt="Image"></div>
+          <div class="panel-footer"><button id="tomatoButton" type="button" onclick="goToCart()" class="btn btn-primary">Add Items to Cart
+              </button></div>
+        </div>
+      </div>
+      <div class="col-sm-4 veggies">
+        <div class="panel panel-primary" id="fruits">
+          <div class="panel-heading">Mango's</div>
+          <div class="panel-body" onmouseover="change()"><img src="cart Images/mango.jpg" class="img-responsive"
+              style="width:100%;  height: 250px;" alt="Image"></div>
+          <div class="panel-footer"><button id="tomatoButton" type="button" onclick="goToCart()" class="btn btn-primary">Add Items to Cart
+              </button></div>
+        </div>
+      </div>
+      <div class="col-sm-4 veggies">
+        <div class="panel panel-primary" id="fruits">
+          <div class="panel-heading">Pineapple's</div>
+          <div class="panel-body" onmouseover="change()"><img src="cart Images/pineapple.jpg" class="img-responsive"
+              style="width:100%; height: 250px" alt="Image"></div>
+          <div class="panel-footer"><button id="tomatoButton" type="button" onclick="goToCart()"  class="btn btn-primary">Add Items to Cart
+            </button></div>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+
+  <footer class="container-fluid text-center">
+    <p>Online Store Copyright</p>
+    <form id="form" class="form-inline needs-validation" novalidate>Get deals:
+      <input type="email" id="email" class="form-control" size="50" placeholder="Email Address">
+      <button type="button" class="btn btn-danger" onclick="validateEmail()">Sign Up</button>
+    </form>
+  </footer>
+<script src="app.js"></script>
+</body>
+
+</html>
